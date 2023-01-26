@@ -1,7 +1,7 @@
 import VerticalLayout from './VerticalLayout.js'
 import ErrorPage from "./ErrorPage.js"
 import LoadingPage from "./LoadingPage.js"
-
+import { sortListByDate } from "../app/sortByDate.js"
 import Actions from './Actions.js'
 
 const row = (bill) => {
@@ -18,6 +18,7 @@ const row = (bill) => {
     </tr>
     `)
   }
+
 
 const rows = (data) => {
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
@@ -69,7 +70,7 @@ export default ({ data: bills, loading, error }) => {
               </tr>
           </thead>
           <tbody data-testid="tbody">
-            ${rows(bills)}
+            ${rows(sortListByDate(bills))}
           </tbody>
           </table>
         </div>

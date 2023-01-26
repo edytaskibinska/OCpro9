@@ -14,8 +14,8 @@ export default class {
       buttonNewBill.addEventListener("click", this.handleClickNewBill);
     const iconEye = document.querySelectorAll(`div[data-testid="icon-eye"]`);
     if (iconEye)
-      iconEye.forEach((icon) => {
-        icon.addEventListener("click", () => handleClickIconEye(icon));
+      iconEye.forEach(icon => {
+        icon.addEventListener('click', () => this.handleClickIconEye(icon))
       });
     new Logout({ document, localStorage, onNavigate });
   }
@@ -28,6 +28,8 @@ export default class {
     console.log("click icon", icon);
     const billUrl = icon.getAttribute("data-bill-url");
     const imgWidth = Math.floor($("#modaleFile").width() * 0.5);
+    console.log("billUrl", billUrl);
+    console.log("imgWidth", imgWidth);
     $("#modaleFile")
       .find(".modal-body")
       .html(
@@ -62,21 +64,13 @@ export default class {
           });
           console.log("length", bills.length);
 
-          const newBills = sortListByDate(bills);
-          newBills.map((elem) => {
-            elem.date = formatDate(elem.date);
-          });
+          // const newBills = sortListByDate(bills);
+          // newBills.map((elem) => {
+          //   elem.date = formatDate(elem.date);
+          // });
 
-          return newBills;
+          return bills;
         });
     }
   };
 }
-
-
-export const sortListByDate = (list) => {
-  const newList = list.sort(function (a, b) {
-    return new Date(b.date) - new Date(a.date);
-  });
-  return newList
-} 

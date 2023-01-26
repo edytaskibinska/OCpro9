@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">48.65% </span>
+                <span class="strong">51.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/37</span>
+                <span class='fraction'>19/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>5/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/11</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">52.78% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/36</span>
+                <span class='fraction'>19/36</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -138,7 +138,12 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,6 +174,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,23 +209,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ROUTES_PATH } from "../constants/routes.js";
 import { formatDate, formatStatus } from "../app/format.js";
 import Logout from "./Logout.js";
@@ -235,8 +245,8 @@ export default class {
 <span class="cstat-no" title="statement not covered" >      buttonNewBill.addEventListener("click", this.handleClickNewBill);</span>
     const iconEye = document.querySelectorAll(`div[data-testid="icon-eye"]`);
     <span class="missing-if-branch" title="else path not taken" >E</span>if (iconEye)
-      iconEye.forEach(<span class="fstat-no" title="function not covered" >(i</span>con) =&gt; {
-<span class="cstat-no" title="statement not covered" >        icon.addEventListener("click", <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleClickIconEye(icon))</span>;</span>
+      iconEye.forEach(<span class="fstat-no" title="function not covered" >ic</span>on =&gt; {
+<span class="cstat-no" title="statement not covered" >        icon.addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.handleClickIconEye(icon))</span></span>
       });
     new Logout({ document, localStorage, onNavigate });
   }
@@ -249,6 +259,8 @@ export default class {
 <span class="cstat-no" title="statement not covered" >    console.log("click icon", icon);</span>
     const billUrl = <span class="cstat-no" title="statement not covered" >icon.getAttribute("data-bill-url");</span>
     const imgWidth = <span class="cstat-no" title="statement not covered" >Math.floor($("#modaleFile").width() * 0.5);</span>
+<span class="cstat-no" title="statement not covered" >    console.log("billUrl", billUrl);</span>
+<span class="cstat-no" title="statement not covered" >    console.log("imgWidth", imgWidth);</span>
 <span class="cstat-no" title="statement not covered" >    $("#modaleFile")</span>
       .find(".modal-body")
       .html(
@@ -283,12 +295,12 @@ export default class {
           });
 <span class="cstat-no" title="statement not covered" >          console.log("length", bills.length);</span>
 &nbsp;
-          const newBills = <span class="cstat-no" title="statement not covered" >sortListByDate(bills);</span>
-<span class="cstat-no" title="statement not covered" >          newBills.map(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            elem.date = formatDate(elem.date);</span>
-          });
+          // const newBills = sortListByDate(bills);
+          // newBills.map((elem) =&gt; {
+          //   elem.date = formatDate(elem.date);
+          // });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >          return newBills;</span>
+<span class="cstat-no" title="statement not covered" >          return bills;</span>
         });
     }
   };
@@ -296,10 +308,13 @@ export default class {
 &nbsp;
 &nbsp;
 export const sortListByDate = (list) =&gt; {
-  const newList = list.sort(function (a, b) {
-    return new Date(b.date) - new Date(a.date);
-  });
-  return newList
+  if(list) {
+    const newList = list.sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+    return newList
+  }
+ 
 } </pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -307,7 +322,7 @@ export const sortListByDate = (list) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Jan 23 2023 12:00:29 GMT+0100 (heure normale d’Europe centrale)
+                at Thu Jan 26 2023 14:21:48 GMT+0100 (heure normale d’Europe centrale)
             </div>
         </div>
         <script src="../prettify.js"></script>
