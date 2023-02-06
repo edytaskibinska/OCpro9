@@ -80,8 +80,9 @@ describe('Given I am connected as an Admin', () => {
       icon2.addEventListener('click', handleShowTickets2)
       userEvent.click(icon2)
       expect(handleShowTickets2).toHaveBeenCalled()
-      await waitFor(() => screen.getByTestId(`open-billUIUZtnPQvnbFnB0ozvJh`) )
-      expect(screen.getByTestId(`open-billUIUZtnPQvnbFnB0ozvJh`)).toBeTruthy()
+
+      await waitFor(() => screen.getByTestId(`open-bill47qAXb6fIm2zOKkLzMro`) )
+      expect(screen.getByTestId(`open-bill47qAXb6fIm2zOKkLzMro`)).toBeTruthy()
 
       icon3.addEventListener('click', handleShowTickets3)
       userEvent.click(icon3)
