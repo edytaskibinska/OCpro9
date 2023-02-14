@@ -14,8 +14,8 @@ export default class {
       buttonNewBill.addEventListener("click", this.handleClickNewBill);
     const iconEye = document.querySelectorAll(`div[data-testid="icon-eye"]`);
     if (iconEye)
-      iconEye.forEach(icon => {
-        icon.addEventListener('click', () => this.handleClickIconEye(icon))
+      iconEye.forEach((icon) => {
+        icon.addEventListener("click", () => this.handleClickIconEye(icon));
       });
     new Logout({ document, localStorage, onNavigate });
   }
@@ -25,14 +25,11 @@ export default class {
   };
 
   handleClickIconEye = (icon) => {
-    console.log("click icon", icon);
-    const billUrl = icon.getAttribute("data-bill-url");
+    const billUrl = icon?.getAttribute("data-bill-url");
     const imgWidth = Math.floor($("#modaleFile").width() * 0.5);
-    console.log("billUrl", billUrl);
-    console.log("imgWidth", imgWidth);
     $("#modaleFile")
       .find(".modal-body")
-      .html(
+      ?.html(
         `<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`
       );
     $("#modaleFile").modal("show");
@@ -40,37 +37,32 @@ export default class {
 
   getBills = () => {
     if (this.store) {
-      return this.store
-        .bills()
-        .list()
-        .then((snapshot) => {
-          let bills = snapshot.map((doc) => {
-            try {
-              return {
-                ...doc,
-                date: doc.date,
-                status: formatStatus(doc.status),
-              };
-            } catch (e) {
-              // if for some reason, corrupted data was introduced, we manage here failing formatDate function
-              // log the error and return unformatted date in that case
-              console.log(e, "for", doc);
-              return {
-                ...doc,
-                date: doc.date,
-                status: formatStatus(doc.status),
-              };
-            }
-          });
-          console.log("length", bills.length);
+      return (
+        this.store
+          .bills()
+          .list()
+          .then((snapshot) => {
+            let bills = snapshot.map((doc) => {
+              try {
+                return {
+                  ...doc,
+                  date: doc.date,
+                  status: formatStatus(doc.status),
+                };
+              } catch (e) {
+                // if for some reason, corrupted data was introduced, we manage here failing formatDate function
+                // log the error and return unformatted date in that case
+                return {
+                  ...doc,
+                  date: doc.date,
+                  status: formatStatus(doc.status),
+                };
+              }
+            });
 
-          // const newBills = sortListByDate(bills);
-          // newBills.map((elem) => {
-          //   elem.date = formatDate(elem.date);
-          // });
-
-          return bills;
-        });
+            return bills;
+          })
+      );
     }
   };
 }

@@ -6,21 +6,28 @@ export default class NewBill {
     this.document = document;
     this.onNavigate = onNavigate;
     this.store = store;
+
     const formNewBill = this.document.querySelector(
       `form[data-testid="form-new-bill"]`
     );
+
     formNewBill.addEventListener("submit", this.handleSubmit);
+
     const file = this.document.querySelector(`input[data-testid="file"]`);
     file.addEventListener("change", this.handleChangeFile);
+
     this.fileUrl = null;
     this.fileName = null;
     this.billId = null;
+    this.errorMsg = document.querySelector(".error-mess");
+
     new Logout({ document, localStorage, onNavigate });
   }
+
   handleChangeFile = (e) => {
     e.preventDefault();
     const file = this.document.querySelector(`input[data-testid="file"]`)
-      .files[0];
+      ?.files[0];
     const filePath = e.target.value.split(/\\/g);
     const fileName = filePath[filePath.length - 1];
     const fileExtension = e.target.value.split(".")[1];
@@ -32,14 +39,16 @@ export default class NewBill {
       fileExtension === "png"
     ) {
       formData.append("file", file);
-      document.querySelector(".error-message").style.visibility = "hidden";
+      if (this.errorMsg.classList.contains("visible")) {
+        this.errorMsg.classList.remove("visible");
+      }
     } else {
-      document.querySelector(".error-message").style.visibility = "visible";
+      this.errorMsg.classList.add("visible");
     }
     formData.append("email", email);
 
     this.store
-      .bills()
+      ?.bills()
       .create({
         data: formData,
         headers: {
@@ -47,7 +56,6 @@ export default class NewBill {
         },
       })
       .then(({ fileUrl, key }) => {
-        console.log(fileUrl);
         this.billId = key;
         this.fileUrl = fileUrl;
         this.fileName = fileName;
@@ -56,10 +64,6 @@ export default class NewBill {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      'e.target.querySelector(`input[data-testid="datepicker"]`).value',
-      e.target.querySelector(`input[data-testid="datepicker"]`).value
-    );
     const email = JSON.parse(localStorage.getItem("user")).email;
     const bill = {
       email,
@@ -79,8 +83,6 @@ export default class NewBill {
       fileName: this.fileName,
       status: "pending",
     };
-    console.log("bill", bill);
-    console.log("bill.fileName", bill.fileName);
     this.updateBill(bill);
     this.onNavigate(ROUTES_PATH["Bills"]);
   };
@@ -89,7 +91,7 @@ export default class NewBill {
   updateBill = (bill) => {
     if (this.store) {
       this.store
-        .bills()
+        ?.bills()
         .update({ data: JSON.stringify(bill), selector: this.billId })
         .then(() => {
           this.onNavigate(ROUTES_PATH["Bills"]);

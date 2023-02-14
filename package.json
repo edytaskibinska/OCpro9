@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest --coverage --noStackTrace --silent=false",
+    "test": "jest --coverage --watchAll --noStackTrace --silent=false --no-cache",
     "clear_jest": "jest --clearCache"
   },
   "jest": {

@@ -70,8 +70,12 @@ button {
   background-color: #0E5AE5;
 }
 
-.error-message {
+.error-mess {
   color: red;
   font-size: 0.9rem;
   visibility: hidden;
+
+}
+.error-mess.visible {
+  visibility: visible;
 }

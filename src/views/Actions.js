@@ -3,7 +3,7 @@ import downloadBlueIcon from "../assets/svg/download_blue.js"
 
 export default (billUrl) => {
   return (
-    `<div class="icon-actions">
+    `<div class="icon-actions" data-testid="icon-actions">
       <div id="eye" data-testid="icon-eye" data-bill-url=${billUrl}>
       ${eyeBlueIcon}
       </div>

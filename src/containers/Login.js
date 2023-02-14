@@ -38,7 +38,6 @@ export default class Login {
   }
 
   handleSubmitAdmin = e => {
-    console.log("e", e)
     e.preventDefault()
     const user = {
       type: "Admin",
@@ -76,7 +75,6 @@ export default class Login {
 
   // not need to cover this function by tests
   createUser = (user) => {
-    console.log("user", user)
     if (this.store) {
       return this.store
       .users()

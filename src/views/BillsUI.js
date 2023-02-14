@@ -6,13 +6,13 @@ import Actions from './Actions.js'
 
 const row = (bill) => {
   return (`
-    <tr>
+    <tr data-testid="table-row">
       <td>${bill.type}</td>
       <td>${bill.name}</td>
       <td>${bill.date}</td>
       <td>${bill.amount} €</td>
       <td>${bill.status}</td>
-      <td>
+      <td data-testid="tab">
         ${Actions(bill.fileUrl)}
       </td>
     </tr>
@@ -57,7 +57,7 @@ export default ({ data: bills, loading, error }) => {
           <div class='content-title'> Mes notes de frais </div>
           <button type="button" data-testid='btn-new-bill' class="btn btn-primary">Nouvelle note de frais</button>
         </div>
-        <div id="data-table">
+        <div id="data-table" data-testid="data-table" >
         <table id="example" class="table table-striped" style="width:100%">
           <thead>
               <tr>
