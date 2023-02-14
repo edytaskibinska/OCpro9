@@ -14,10 +14,13 @@ export default (height) => {
         <div class='vertical-navbar' style='height: ${height}vh;'>
           <div class='layout-title'> Billed </div>
           <div id='layout-icon1' data-testid="icon-window">
+            ${WindowIcon}
           </div>
           <div id='layout-icon2' data-testid="icon-mail">
+            ${MailIcon}
           </div>
           <div id='layout-disconnect'>
+            ${DisconnectIcon}
           </div>
       </div>
         `
@@ -28,6 +31,7 @@ export default (height) => {
         <div class='vertical-navbar' style='height: ${height}vh;'>
           <div class='layout-title'> Billed </div>
             <div id='layout-disconnect' data-testid='layout-disconnect'>
+              ${DisconnectIcon}
             </div>
           </div>
         `
