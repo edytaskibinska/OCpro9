@@ -7,7 +7,6 @@ import { bills } from "../fixtures/bills.js";
 import { ROUTES_PATH, ROUTES } from "../constants/routes.js";
 import { localStorageMock } from "../__mocks__/localStorage.js";
 import userEvent from "@testing-library/user-event";
-
 import router from "../app/Router.js";
 import Bills from "../containers/Bills.js";
 
@@ -30,7 +29,7 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills);
       await waitFor(() => screen.getByTestId("icon-window"));
       const windowIcon = screen.getByTestId("icon-window");
-      //to-do write expect expression
+
       expect(windowIcon).toBeTruthy();
       expect(windowIcon.classList.contains("active-icon")).toBe(true);
     });
@@ -43,6 +42,7 @@ describe("Given I am connected as an employee", () => {
         .map((a) => a.innerHTML);
       const antiChrono = (a, b) => (a < b ? 1 : -1);
       const datesSorted = [...dates].sort(antiChrono);
+
       expect(dates).toEqual(datesSorted);
     });
 
@@ -58,10 +58,10 @@ describe("Given I am connected as an employee", () => {
         localStorage: window.localStorage,
       });
       const handleClick = jest.fn((e) => bill.handleClickNewBill(e));
-
       const btnNewBill = screen.getByTestId("btn-new-bill");
       btnNewBill.addEventListener("click", handleClick);
       userEvent.click(btnNewBill);
+
       expect(handleClick).toHaveBeenCalled();
     });
   });
@@ -101,12 +101,12 @@ describe("Given I am connected as an employee", () => {
     iconEye.setAttribute("onclick", handleClickIcon());
 
     expect(iconEye).toBeTruthy();
-    iconEye.addEventListener("click", handleClickIcon);
 
+    iconEye.addEventListener("click", handleClickIcon);
     await waitFor(() => screen.getByTestId("modal"));
     const modal = screen.getByTestId("modal");
-    expect(modal).toBeTruthy();
 
+    expect(modal).toBeTruthy();
     expect(handleClickIcon).toHaveBeenCalled();
   });
 });
