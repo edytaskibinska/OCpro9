@@ -32,6 +32,7 @@ describe("Given I am connected as an employee", () => {
       const windowIcon = screen.getByTestId("icon-window");
       //to-do write expect expression
       expect(windowIcon).toBeTruthy();
+      expect(windowIcon.classList.contains("active-icon")).toBe(true);
     });
     test("Then bills should be ordered from earliest to latest", () => {
       document.body.innerHTML = BillsUI({ data: bills });
@@ -59,8 +60,6 @@ describe("Given I am connected as an employee", () => {
       const handleClick = jest.fn((e) => bill.handleClickNewBill(e));
 
       const btnNewBill = screen.getByTestId("btn-new-bill");
-
-      //fireEvent.click(btnNewBill)
       btnNewBill.addEventListener("click", handleClick);
       userEvent.click(btnNewBill);
       expect(handleClick).toHaveBeenCalled();
@@ -103,53 +102,11 @@ describe("Given I am connected as an employee", () => {
 
     expect(iconEye).toBeTruthy();
     iconEye.addEventListener("click", handleClickIcon);
+
+    await waitFor(() => screen.getByTestId("modal"));
+    const modal = screen.getByTestId("modal");
+    expect(modal).toBeTruthy();
+
     expect(handleClickIcon).toHaveBeenCalled();
   });
-
-  test('calling getBills func', async () => {
-    window.$ = jest.fn().mockImplementation(() => {
-      return {
-        modal: jest.fn(),
-        click: jest.fn(),
-        find: jest.fn(),
-        html: jest.fn(),
-        store: jest.fn(),
-        bills: [],
-      };
-    });
-    Object.defineProperty(window, "localStorage", {
-      value: localStorageMock,
-    });
-    window.localStorage.setItem(
-      "user",
-      JSON.stringify({
-        type: "Employee",
-      })
-    );
-    const store = jest.fn();
-
-    const bill = new Bills({
-      document,
-      onNavigate,
-      store,
-      localStorage: window.localStorage,
-    });
-
-
-// or if your are using TS
-
-
-    const root = document.createElement("div");
-      root.setAttribute("id", "root");
-      document.body.innerHTML = BillsUI({ data:bills });
-
-      document.body.append(root);
-      router();
-      window.onNavigate(ROUTES_PATH.Bills);
-    const expected = true; 
-    const getBills = jest.fn(() => bill.getBills());
-    
-
-    //expect(await getBills()).toEqual(expected);
-});
 });

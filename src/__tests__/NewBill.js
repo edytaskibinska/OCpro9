@@ -16,7 +16,7 @@ import mockStore from "../__mocks__/store";
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page", () => {
-    test("Then the form appears", async () => {
+    test("Then the form appears and icon email is highlited", async () => {
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock,
       });
@@ -32,13 +32,18 @@ describe("Given I am connected as an employee", () => {
       router();
       window.onNavigate(ROUTES_PATH.NewBill);
       await waitFor(() => screen.getByTestId("form-new-bill"));
-
+      await waitFor(() => screen.getByTestId("icon-mail"));
+      const emailIcon = screen.getByTestId("icon-mail");
+      expect(emailIcon).toBeTruthy();
+      expect(emailIcon.classList.contains("active-icon")).toBe(true);
       const html = NewBillUI();
       document.body.innerHTML = html;
 
       const formBill = screen.getByTestId("form-new-bill");
       expect(formBill).toBeTruthy();
     });
+
+   
   });
 });
 
@@ -74,7 +79,6 @@ describe("Given that I am on new bill page", () => {
 
       const form = screen.getByTestId("form-new-bill");
       const handleSubmit = jest.fn((e) => e.preventDefault());
-
       form.addEventListener("submit", handleSubmit);
       fireEvent.submit(form);
       expect(screen.getByTestId("form-new-bill")).toBeTruthy();
@@ -106,8 +110,6 @@ describe("Given that I am on new bill page", () => {
       const inputComment = screen.getByTestId("commentary");
       const inputFile = screen.getByTestId("file");
       const errorMessage = screen.getByTestId("error-mess");
-
-      //const file = new File(['img'], 'bill.jpg', { type: 'image/jpg' })
 
       const formValues = {
         type: "Fornitures de bureau",
@@ -150,7 +152,6 @@ describe("Given that I am on new bill page", () => {
       const handleSubmit = jest.fn((e) => newBill.handleSubmit(e));
       formulaire.addEventListener("submit", handleSubmit);
       fireEvent.submit(formulaire);
-
       expect(handleSubmit).toHaveBeenCalled();
       expect(inputTypeDepense.validity.valid).not.toBeTruthy();
       expect(inputNomDepense.validity.valid).toBeTruthy();
@@ -162,6 +163,7 @@ describe("Given that I am on new bill page", () => {
       // check if the file is there
       expect(inputFile.files[0].name).toBe("bill.jpg");
       expect(inputFile.files.length).toBe(1);
+      //if errorMessageonly have class "error-mess" that means there is no errors
       expect(errorMessage).toHaveClass("error-mess");
     });
   });
@@ -184,6 +186,7 @@ describe("Given I am on new bill page", () => {
         })
       );
     });
+
     test("Then an error message for the file input should be displayed", () => {
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
@@ -208,6 +211,7 @@ describe("Given I am on new bill page", () => {
       const extension = /([a-z 0-9])+(.jpg|.jpeg|.png)/gi;
       inputFile.addEventListener("change", onFileChange);
       userEvent.upload(inputFile, filePDF);
+
       expect(onFileChange).toHaveBeenCalled();
       expect(inputFile.files[0]).toStrictEqual(filePDF);
       expect(inputFile.files[0].name).not.toMatch(extension);
@@ -217,7 +221,13 @@ describe("Given I am on new bill page", () => {
           `Format de fichier est invalide (.jpg, .jpeg, .png sont autorisés)`
         )
       ).toBeTruthy();
-      // screen.debug(errorMessage)
+
+      const form = screen.getByTestId("form-new-bill");
+      const handleFormSubmit = jest.fn((evt) => newBill.handleSubmit(evt));
+      form.addEventListener("submit", handleFormSubmit);
+      fireEvent.submit(form);
+      expect(handleFormSubmit).toHaveBeenCalled();
+      expect(form).toBeTruthy();
     });
 
     test("Then an error message for the file input should not be displayed", () => {
@@ -238,9 +248,7 @@ describe("Given I am on new bill page", () => {
       const onFileChange = jest.fn((e) => newBill.handleChangeFile(e));
 
       const filePNG = new File(["hello"], "hello.jpg", { type: "image/jpg" });
-
       const extension = /([a-z 0-9])+(.jpg|.jpeg|.png)/gi;
-
       inputFile.addEventListener("change", onFileChange);
       userEvent.upload(inputFile, filePNG);
       expect(onFileChange).toHaveBeenCalled();
@@ -249,7 +257,6 @@ describe("Given I am on new bill page", () => {
     });
   });
 });
-
 
 describe("Given I am connected as an employéé and on NewBill page", () => {
   beforeEach(() => {
