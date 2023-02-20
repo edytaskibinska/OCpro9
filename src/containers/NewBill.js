@@ -33,6 +33,7 @@ export default class NewBill {
     const fileExtension = e.target.value.split(".")[1];
     const formData = new FormData();
     const email = JSON.parse(localStorage.getItem("user")).email;
+    // DEBUG - corretion bug 3
     if (
       fileExtension === "jpg" ||
       fileExtension === "jpeg" ||

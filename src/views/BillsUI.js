@@ -48,7 +48,7 @@ export default ({ data: bills, loading, error }) => {
   } else if (error) {
     return ErrorPage(error)
   }
-  
+  // DEBUG - corretion bug 2
   return (`
     <div class='layout'>
       ${VerticalLayout(120)}
