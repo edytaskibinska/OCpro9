@@ -165,7 +165,7 @@ describe("Given that I am on new bill page", () => {
       expect(inputFile.files[0]).toBeDefined();
       expect(inputFile.files[0].name).toBe("bill.jpg");
       expect(inputFile.files.length).toBe(1);
-      //if errorMessageonly have class "error-mess" that means there is no errors
+      //if errorMessageonly has class "error-mess" that means there is no errors
       expect(errorMessage).toHaveClass("error-mess");
     });
   });
