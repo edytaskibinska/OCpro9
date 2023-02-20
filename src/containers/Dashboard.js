@@ -141,7 +141,7 @@ export default class {
   };
 
   handleShowTickets(e, bills, index) {
-    // DEBUG - buf 4
+    // DEBUG - bug 4
     // was if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.counter === undefined) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
